@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator</title>
+    <script
+      src="https://kit.fontawesome.com/7de0610cf8.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: aqua;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --color01: #5670f8;
+        --color02: #ced2fd;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      @media screen and (max-width: 660px) {
+        html {
+          font-size: 35%;
+        }
+      }
+      .container {
+        height: 100vh;
+        width: 100vw;
+        background-color: var(--color01);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+      }
+      .header {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        font-weight: 100;
+      }
+      .section {
+        /* border: 2px solid red; */
+        background-color: var(--color02);
+        color: var(--color01);
+        width: 52rem;
+        height: 27rem;
+        border-radius: 10px;
+        padding: 2rem;
+        font-size: 2rem;
+        text-align: center;
+        display: grid;
+        box-shadow: 5px 6px 5px 1px #3d3b3b85;
+        box-sizing: border-box;
+      }
+      .quote_container {
+        padding: 2rem 0 1rem 0;
+        height: 6rem;
+      }
+      .author_continer p {
+        text-align: right;
+        margin-right: 2rem;
+      }
+      .btn {
+        padding: 1rem 2rem;
+        color: white;
+        background-color: var(--color01);
+        font-size: 1.5rem;
+        border: none;
+        outline: none;
+        box-shadow: 5px 10px #888888;
+        box-shadow: 5px 6px 5px 1px #3d3b3b85;
+        cursor: pointer;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h2>
+          Let's start our <span class="time">night</span> with a new quote
+        </h2>
+      </header>
+      <section class="section">
+        <div class="quote_container">
+          <p>
+            <i class="fa-solid fa-quote-left"> </i>&nbsp;<span class="quote">
+              I am so clever that sometimes I don't understand a single word of
+              what I am saying.
+            </span>
+            <i class="fa-solid fa-quote-right"> </i>
+          </p>
+        </div>
+        <div class="author_continer">
+          <p>- By <span class="author">Oscar Wilde</span></p>
+        </div>
+        <div class="button_container">
+          <button class="btn">New Quote</button>
+        </div>
+      </section>
+    </div>
+    <script>
+      const time = document.querySelector(".time");
+      const btn = document.querySelector(".btn");
+      const container = document.querySelector(".container");
+      const section = document.querySelector(".section");
+      const quote = document.querySelector(".quote");
+      const author = document.querySelector(".author");
+
+      const date = new Date();
+      const hour = date.getHours();
+
+      if ((hour >= 0) & (hour < 12)) {
+        time.innerHTML = "morning";
+      } else if ((hour >= 12) & (hour < 16)) {
+        time.innerHTML = "afternoon";
+      } else {
+        time.innerHTML = "night";
+      }
+      btn.addEventListener("click", newQuote);
+      let color1 = [
+        "#D32F2F",
+        "#AFB42B",
+        "#7B1FA2",
+        "#C2185B",
+        "#689F38",
+        "#0097A7",
+        "#FFA000",
+        "#388E3C",
+        "#5D4037",
+        "#F57C00",
+      ];
+      let color2 = [
+        "#FFCDD2",
+        "#F0F4C3",
+        "#E1BEE7",
+        "#F8BBD0",
+        "#DCEDC8",
+        "#B2EBF2",
+        "#FFECB3",
+        "#C8E6C9",
+        "#D7CCC8",
+        "#FFE0B2",
+      ];
+      let quotes = [
+        "We grow fearless when we do the things we fear.",
+        "When you want something, all the universe conspires in helping you to achieve it.",
+        "When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one which has been opened for us.",
+        "If you hear a voice within you say 'you cannot paint,' then by all means paint and that voice will be silenced.",
+        "Love is an untamed force. When we try to control it, it destroys us. When we try to imprison it, it enslaves us. When we try to understand it, it leaves us feeling lost and confused.",
+        "You can't be great if you don't feel great. Make exceptional health your number one priority.",
+        "Impossible is just an opinion.",
+        "The secret of getting ahead is getting started.",
+        "Waiting is painful. Forgetting is painful. But not knowing which to do is the worst kind of suffering.",
+        "All our dreams can come true if we have the courage to pursue them.",
+      ];
+
+      let authors = [
+        "Robin Sharma",
+        "The Alchemist",
+        "Helen Keller",
+        "Vincent Van Gogh",
+        "Paulo Coelho",
+        "Robin Sharma",
+        "Paulo Coelho",
+        "Mark Twain",
+        "Paulo Coelho",
+        "Walt Disney",
+      ];
+      console.log(authors.length);
+      let i = 0;
+      function newQuote() {
+        i = i < color1.length - 1 ? ++i : 0;
+        container.style.backgroundColor = color1[i];
+        btn.style.backgroundColor = color1[i];
+        section.style.backgroundColor = color2[i];
+        section.style.color = color1[i];
+        quote.innerHTML = quotes[i];
+        author.innerHTML = authors[i];
+      }
+    </script>
+  </body>
+</html>
